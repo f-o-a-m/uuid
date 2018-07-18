@@ -1,5 +1,6 @@
 {-# LANGUAGE CPP                #-}
 {-# LANGUAGE DeriveDataTypeable #-}
+{-# LANGUAGE DeriveGeneric      #-}
 {-# LANGUAGE TypeFamilies       #-}
 {-# LANGUAGE ViewPatterns       #-}
 #if __GLASGOW_HASKELL__ >= 704
@@ -74,11 +75,12 @@ import           Data.UUID.Types.Internal.Builder
 
 import           System.Random
 
+import           GHC.Generics                     (Generic)
 
 -- | Type representing <https://en.wikipedia.org/wiki/UUID Universally Unique Identifiers (UUID)> as specified in
 --  <http://tools.ietf.org/html/rfc4122 RFC 4122>.
 data UUID = UUID {-# UNPACK #-} !Word64 {-# UNPACK #-} !Word64
-          deriving (Eq, Ord, Typeable)
+          deriving (Eq, Ord, Generic, Typeable)
 {-
     Prior to uuid-types-1.0.4:
          !Word32 !Word32 !Word32 !Word32
